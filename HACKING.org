@@ -1,0 +1,26 @@
+This is a quick overview on where things are within the webclient.
+
+The flow of information from user to the pokemon online server looks like this:
+
+  webclient -> python server -> pokemon online server
+
+The webclient side of this handles the look and feel of the client. This
+reads in json from the python server and acts on it as well as sends
+json back out to the server for commands.
+
+The python server is in charge of translating the json commands from
+the webclient into PO's native binary format.
+
+
+Looking at specific files:
+ - poprotocol/protocol.py :: implements the PO binary protocol. This
+      is a library that is included by server.py.
+ - server.py :: handles translating json to PO's protocol and
+      back. This file is full of =onXXX= functions, both for sending
+      to the PO server and receiving data from the PO server.
+ - static/network.js :: provides the javascript api for sending
+      messages to the PO server. Additionally includes a "hook" system
+      for handling incoming events.
+ - static/ui.js :: provides the actual user interface and is of
+                   interest to those wishing to work on the user
+                   facing portion of the webclient.
